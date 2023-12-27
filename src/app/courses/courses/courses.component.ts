@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Course } from '../model/course';
+import { CoursesService } from '../services/courses.service';
 
 @Component({
   selector: 'app-courses',
@@ -10,10 +11,8 @@ export class CoursesComponent {
   courses: Course[]; //dataSource
   displayedColumns = ['_id', 'name', 'category'];
 
-  constructor(){
-    this.courses = [
-      {_id: 1, name: 'Ciência da computação', category: 'Mestrado'},
-      {_id: 2, name: 'Ciências Econômicas', category: 'Bacharelado'}
-    ]
+  constructor(private courseService: CoursesService){
+    this.courses = this.courseService.listarCursos();
   }
 }
+//Aqui, a classe component tem um papel de comunicação com a tela

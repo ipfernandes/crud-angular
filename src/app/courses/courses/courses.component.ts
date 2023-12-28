@@ -9,11 +9,11 @@ import { Observable } from 'rxjs';
   styleUrl: './courses.component.scss'
 })
 export class CoursesComponent {
-  courses: Observable<Course[]>; //dataSource que será exibido na tela
+  courses$: Observable<Course[]>; //dataSource que será exibido na tela
   displayedColumns = ['_id', 'name', 'category'];
 
   constructor(private courseService: CoursesService){
-    this.courses = this.courseService.listarCursos();
+    this.courses$ = this.courseService.listarCursos();
   }
 }
 //Aqui, a classe component tem um papel de comunicação com a tela

@@ -2,27 +2,34 @@
   <mat-toolbar>
     <span>Lista de cursos</span>
   </mat-toolbar>
-<table mat-table [dataSource]="courses">
+  <div *ngIf="courses$ | async as courses; else loading">
+  <table mat-table [dataSource]="courses">
 
-  <!-- Identificador do curso -->
-  <ng-container matColumnDef="_id">
-    <th mat-header-cell *matHeaderCellDef> Identificador </th>
-    <td mat-cell *matCellDef="let curso"> {{curso._id}} </td>
-  </ng-container>
+    <!-- Identificador do curso -->
+    <ng-container matColumnDef="_id">
+      <th mat-header-cell *matHeaderCellDef> Identificador </th>
+      <td mat-cell *matCellDef="let curso"> {{curso._id}} </td>
+    </ng-container>
 
-  <!-- Nome do curso -->
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Curso </th>
-    <td mat-cell *matCellDef="let curso"> {{curso.name}} </td>
-  </ng-container>
+    <!-- Nome do curso -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Curso </th>
+      <td mat-cell *matCellDef="let curso"> {{curso.name}} </td>
+    </ng-container>
 
-  <!-- Categoria do curso -->
-  <ng-container matColumnDef="category">
-    <th mat-header-cell *matHeaderCellDef> Categoria </th>
-    <td mat-cell *matCellDef="let curso"> {{curso.category}} </td>
-  </ng-container>
+    <!-- Categoria do curso -->
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef> Categoria </th>
+      <td mat-cell *matCellDef="let curso"> {{curso.category}} </td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+<ng-template #loading>
+  <div class="loading-spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>
 </mat-card>

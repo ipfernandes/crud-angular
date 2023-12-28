@@ -7,11 +7,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CoursesService {
 
-  constructor(private httpClient:HttpClient) { }
+  private readonly Endpoint = '/assets/courses.json'
 
-  listarCursos(): Course[]{
-    return [{_id: 1, name: 'Ciência da computação', category: 'Mestrado'},
-    {_id: 2, name: 'Ciências Econômicas', category: 'Bacharelado'}];
+  constructor(private httpClient:HttpClient) { }
+  //o casting é opcional, porém o código fica mais legível com ele
+  listarCursos(){
+    return this.httpClient.get<Course[]>(this.Endpoint);
   }
 }
 //Classe responsável pelas regras de negócio, seu objetivo é se conectar com a component

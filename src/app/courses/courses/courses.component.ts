@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Course } from '../model/course';
 import { CoursesService } from '../services/courses.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-courses',
@@ -8,7 +9,7 @@ import { CoursesService } from '../services/courses.service';
   styleUrl: './courses.component.scss'
 })
 export class CoursesComponent {
-  courses: Course[]; //dataSource
+  courses: Observable<Course[]>; //dataSource que será exibido na tela
   displayedColumns = ['_id', 'name', 'category'];
 
   constructor(private courseService: CoursesService){
